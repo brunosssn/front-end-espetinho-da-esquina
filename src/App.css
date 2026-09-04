@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+
+.bar-app {
+  --bg: #F7A427;
+  --ink: #5A1210;
+  --ink-dim: #8C5A3E;
+  --surface: #FFF6E8;
+  --surface-raised: #FFEBC9;
+  --maroon: #7A1518;
+  --maroon-soft: rgba(122, 21, 24, 0.12);
+  --crimson: #C1272D;
+  --line: rgba(122, 21, 24, 0.3);
+  --success: #3F6B3A;
+  --success-soft: rgba(63, 107, 58, 0.14);
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 28px;
+  box-sizing: border-box;
+}
+.bar-app * { box-sizing: border-box; }
+
+.bar-app .header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--line);
+}
+.bar-app .header h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.3px;
+  margin: 0;
+  color: var(--maroon);
+}
+.bar-app .header .sub {
+  color: var(--ink-dim);
+  font-size: 13px;
+  margin-top: 4px;
+}
+.bar-app .table-picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+.bar-app .table-picker select {
+  background: var(--surface);
+  border: 1.5px solid var(--maroon);
+  color: var(--maroon);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+
+.bar-app .layout {
+  display: grid;
+  grid-template-columns: 180px 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .bar-app .layout { grid-template-columns: 1fr; }
+}
+
+.bar-app .categories {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.bar-app .cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  color: var(--ink-dim);
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+.bar-app .cat-btn:hover { color: var(--maroon); background: var(--surface); }
+.bar-app .cat-btn.active {
+  color: var(--maroon);
+  background: var(--maroon-soft);
+  border-left: 2px solid var(--maroon);
+  font-weight: 600;
+}
+.bar-app .cat-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.bar-app .menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.bar-app .item-card {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bar-app .item-card h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 17px;
+  margin: 0;
+  color: var(--ink);
+}
+.bar-app .item-card p {
+  font-size: 12.5px;
+  color: var(--ink-dim);
+  margin: 0;
+  line-height: 1.4;
+  min-height: 34px;
+}
+.bar-app .item-card .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bar-app .item-card .price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--maroon);
+  font-weight: 600;
+}
+.bar-app .add-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface-raised);
+  border: 1.5px solid var(--maroon);
+  color: var(--maroon);
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.bar-app .add-btn:hover { background: var(--maroon); color: var(--surface); }
+.bar-app .add-btn svg { width: 13px; height: 13px; }
+
+.bar-app .ticket {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+  position: sticky;
+  top: 20px;
+}
+.bar-app .ticket-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: var(--maroon);
+}
+.bar-app .ticket-header svg { width: 16px; height: 16px; color: var(--crimson); }
+.bar-app .ticket-sub {
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px dashed var(--line);
+}
+.bar-app .empty-ticket {
+  color: var(--ink-dim);
+  font-size: 13px;
+  padding: 20px 0;
+  text-align: center;
+}
+.bar-app .cart-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.bar-app .cart-line .name {
+  flex: 1;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.bar-app .cart-line .name .unit {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-dim);
+  margin-top: 2px;
+}
+.bar-app .qty-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bar-app .qty-ctrl button {
+  background: var(--surface-raised);
+  border: 1px solid var(--maroon);
+  color: var(--maroon);
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.bar-app .qty-ctrl svg { width: 11px; height: 11px; }
+.bar-app .qty-ctrl .qty { width: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink); }
+.bar-app .line-total {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  width: 56px;
+  text-align: right;
+  color: var(--ink);
+}
+.bar-app .remove-btn {
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  cursor: pointer;
+  padding: 2px;
+}
+.bar-app .remove-btn:hover { color: var(--crimson); }
+.bar-app .remove-btn svg { width: 13px; height: 13px; }
+
+.bar-app .total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 14px 0;
+}
+.bar-app .total-row .label { font-size: 13px; color: var(--ink-dim); }
+.bar-app .total-row .value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  color: var(--maroon);
+  font-weight: 700;
+}
+.bar-app .submit-btn {
+  width: 100%;
+  background: var(--maroon);
+  color: #FFF6E8;
+  border: none;
+  padding: 12px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+.bar-app .submit-btn:hover:not(:disabled) { background: #611012; }
+.bar-app .submit-btn:disabled {
+  background: var(--surface-raised);
+  color: var(--ink-dim);
+  cursor: not-allowed;
+}
+
+.bar-app .orders-section {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 2px solid var(--line);
+}
+.bar-app .orders-section h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0 0 14px 0;
+  color: var(--maroon);
+}
+.bar-app .orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.bar-app .order-card {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+}
+.bar-app .order-card .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.bar-app .order-card .mesa {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+}
+.bar-app .order-card .time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-dim);
+}
+.bar-app .order-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-size: 12.5px;
+  color: var(--ink-dim);
+}
+.bar-app .order-card ul li { padding: 2px 0; }
+.bar-app .status-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.bar-app .status-badge.preparando { background: rgba(193, 39, 45, 0.15); color: var(--crimson); }
+.bar-app .status-badge.entregue { background: var(--success-soft); color: var(--success); }
+.bar-app .order-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.bar-app .order-actions button {
+  flex: 1;
+  background: var(--surface-raised);
+  border: 1px solid var(--maroon);
+  color: var(--maroon);
+  padding: 6px;
+  border-radius: 16px;
+  font-size: 11.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-weight: 500;
+}
+.bar-app .order-actions button:hover { background: var(--maroon); color: var(--surface); }
+.bar-app .order-actions svg { width: 12px; height: 12px; }
