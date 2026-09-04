@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from "react";
-import Cabecalho from "./components/Cabecalho";
-import SeletorCategoria from "./components/SeletorCategoria";
-import GradeCardapio from "./components/GradeCardapio";
-import Comanda from "./components/Comanda";
-import ListaPedidos from "./components/ListaPedidos";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navegacao from "./components/Navegacao";
+import TelaGarcom from "./paginas/TelaGarcom";
+import TelaCozinha from "./paginas/TelaCozinha";
 import { ITENS_CARDAPIO } from "./dados/dadosIniciais";
 import "./App.css";
 
@@ -60,31 +59,41 @@ export default function App() {
     setPedidosEnviados((pedidos) => pedidos.filter((o) => o.id !== id));
 
   return (
-    <div className="bar-app">
-      <Cabecalho mesa={mesa} setMesa={setMesa} />
+    <BrowserRouter>
+      <div className="bar-app">
+        <Navegacao />
 
-      <div className="layout">
-        <SeletorCategoria
-          categoriaAtiva={categoriaAtiva}
-          setCategoriaAtiva={setCategoriaAtiva}
-        />
-        <GradeCardapio itens={itensNaCategoria} adicionarItem={adicionarItem} />
-        <Comanda
-          mesa={mesa}
-          itensCarrinho={itensCarrinho}
-          total={total}
-          adicionarItem={adicionarItem}
-          diminuirItem={diminuirItem}
-          removerItem={removerItem}
-          enviarPedido={enviarPedido}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <TelaGarcom
+                mesa={mesa}
+                setMesa={setMesa}
+                categoriaAtiva={categoriaAtiva}
+                setCategoriaAtiva={setCategoriaAtiva}
+                itensNaCategoria={itensNaCategoria}
+                adicionarItem={adicionarItem}
+                itensCarrinho={itensCarrinho}
+                total={total}
+                diminuirItem={diminuirItem}
+                removerItem={removerItem}
+                enviarPedido={enviarPedido}
+              />
+            }
+          />
+          <Route
+            path="/cozinha"
+            element={
+              <TelaCozinha
+                pedidosEnviados={pedidosEnviados}
+                concluirPedido={concluirPedido}
+                removerPedido={removerPedido}
+              />
+            }
+          />
+        </Routes>
       </div>
-
-      <ListaPedidos
-        pedidosEnviados={pedidosEnviados}
-        concluirPedido={concluirPedido}
-        removerPedido={removerPedido}
-      />
-    </div>
+    </BrowserRouter>
   );
 }
